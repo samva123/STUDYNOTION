@@ -3,7 +3,8 @@ import {Route , Routes} from "react-router-dom"
 import Home from "./pages/Home"
 import Navbar from "./components/Common/Navbar"
 import Login from "./pages/Login"
-import OpenRoute from "./components/core/Auth/OpenRoute"
+import Signup from "./pages/Signup"
+// import OpenRoute from "./components/core/Auth/OpenRoute"
 import About from "./pages/About"
 import Contact from "./pages/Contact"
 
@@ -13,10 +14,10 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path = "/" element={<Home/>}/>
-        <Route path="login" element = {
-          <Login />}/>
+        <Route path="/login" element = {<Login />}/>
+        <Route path="/signup" element = {<Signup />}/>
 
-          <Route path="about" element={<About/>}/>
+          <Route path="/about" element={<About/>}/>
           <Route path="/contact" element={<Contact />} />
         
 
