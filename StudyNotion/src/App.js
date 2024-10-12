@@ -7,6 +7,7 @@ import Signup from "./pages/Signup"
 // import OpenRoute from "./components/core/Auth/OpenRoute"
 import About from "./pages/About"
 import Contact from "./pages/Contact"
+import ForgotPassword from "./pages/ForgotPassword"
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
 
           <Route path="/about" element={<About/>}/>
           <Route path="/contact" element={<Contact />} />
+
+
+          <Route path="/forgot-password" element={<ForgotPassword/>}/>
         
 
      
