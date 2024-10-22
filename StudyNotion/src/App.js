@@ -13,6 +13,10 @@ import VerifyEmail from "./pages/VerifyEmail"
 import Dashboard from "./pages/Dashboard"
 import PrivateRoute from "./components/core/Auth/PrivateRoute"
 import MyProfile from "./components/core/Dashboard/MyProfile"
+import Settings from "./components/core/Dashboard/Settings"
+import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses"
+import Cart from "./components/core/Dashboard/Cart"
+import Catalog from "./pages/Catalog"
 
 function App() {
   return (
@@ -24,6 +28,7 @@ function App() {
 
           <Route path="/about" element={<About/>}/>
           <Route path="/contact" element={<Contact />} />
+          <Route path="catalog/:catalogName" element={<Catalog />} />
 
 
 
@@ -96,7 +101,14 @@ function App() {
           }
         >
           <Route path="dashboard/my-profile" element={<MyProfile />} />
-          </Route>
+          <Route path="dashboard/Settings" element={<Settings />} />
+          <Route
+                path="dashboard/enrolled-courses"
+                element={<EnrolledCourses />}
+              />
+              <Route path="/dashboard/cart" element={<Cart />} />
+          
+        </Route>
         
 
      
