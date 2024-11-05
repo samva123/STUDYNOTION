@@ -1,5 +1,9 @@
-import "./App.css";
-import {Route , Routes} from "react-router-dom"
+import { useEffect } from "react"
+import "./App.css"
+// Redux
+import { useDispatch, useSelector } from "react-redux"
+// React Router
+import { Route, Routes, useNavigate } from "react-router-dom"
 import Home from "./pages/Home"
 import Navbar from "./components/Common/Navbar"
 import Login from "./pages/Login"
@@ -17,8 +21,29 @@ import Settings from "./components/core/Dashboard/Settings"
 import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses"
 import Cart from "./components/core/Dashboard/Cart"
 import Catalog from "./pages/Catalog"
+import AddCourse from "./components/core/Dashboard/AddCourse"
+import { getUserDetails } from "./services/operations/profileAPI"
+import { ACCOUNT_TYPE } from "./utils/constants"
+import MyCourses from "./components/core/Dashboard/MyCourses";
+import EditCourse from "./components/core/Dashboard/EditCourse"
+import CourseDetails from "./pages/CourseDetails"
+
 
 function App() {
+
+
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { user } = useSelector((state) => state.profile)
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      const token = JSON.parse(localStorage.getItem("token"))
+      dispatch(getUserDetails(token, navigate))
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return (
     <div className="flex min-h-screen w-screen flex-col bg-richblack-900 font-inter">
       <Navbar/>
@@ -28,6 +53,7 @@ function App() {
 
           <Route path="/about" element={<About/>}/>
           <Route path="/contact" element={<Contact />} />
+          <Route path="courses/:courseId" element={<CourseDetails />} />
           <Route path="catalog/:catalogName" element={<Catalog />} />
 
 
@@ -107,6 +133,22 @@ function App() {
                 element={<EnrolledCourses />}
               />
               <Route path="/dashboard/cart" element={<Cart />} />
+
+
+
+
+              {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+            <>
+              
+              <Route path="dashboard/add-course" element={<AddCourse />} />
+              <Route path="dashboard/my-courses" element={<MyCourses />} />
+              <Route
+                path="dashboard/edit-course/:courseId"
+                element={<EditCourse />}
+              />
+              
+            </>
+          )}
           
         </Route>
         

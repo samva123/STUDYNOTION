@@ -7,20 +7,6 @@ const { uploadImageToCloudinary } = require("../utils/imageUploader")
 const CourseProgress = require("../models/CourseProgress")
 const { convertSecondsToDuration } = require("../utils/secToDuration")
 // Function to create a new course
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 exports.createCourse = async (req, res) => {
   try {
     // Get user ID from request object
@@ -32,7 +18,7 @@ exports.createCourse = async (req, res) => {
       courseDescription,
       whatYouWillLearn,
       price,
-      // tag: _tag,
+      tag: _tag,
       category,
       status,
       instructions: _instructions,
@@ -41,10 +27,10 @@ exports.createCourse = async (req, res) => {
     const thumbnail = req.files.thumbnailImage
 
     // Convert the tag and instructions from stringified Array to Array
-    // const tag = JSON.parse(_tag)
+    const tag = JSON.parse(_tag)
     const instructions = JSON.parse(_instructions)
 
-    // console.log("tag", tag)
+    console.log("tag", tag)
     console.log("instructions", instructions)
 
     // Check if any of the required fields are missing
@@ -53,8 +39,7 @@ exports.createCourse = async (req, res) => {
       !courseDescription ||
       !whatYouWillLearn ||
       !price ||
-      // !tag.length ||
-      
+      !tag.length ||
       !thumbnail ||
       !category ||
       !instructions.length
@@ -64,9 +49,9 @@ exports.createCourse = async (req, res) => {
         message: "All Fields are Mandatory",
       })
     }
-    // if (!status || status === undefined) {
-    //   status = "Draft"
-    // }
+    if (!status || status === undefined) {
+      status = "Draft"
+    }
     // Check if the user is an instructor
     const instructorDetails = await User.findById(userId, {
       accountType: "Instructor",
@@ -100,7 +85,7 @@ exports.createCourse = async (req, res) => {
       instructor: instructorDetails._id,
       whatYouWillLearn: whatYouWillLearn,
       price,
-      // tag,
+      tag,
       category: categoryDetails._id,
       thumbnail: thumbnailImage.secure_url,
       status: status,
@@ -146,8 +131,6 @@ exports.createCourse = async (req, res) => {
     })
   }
 }
-
-
 // Edit Course Details
 exports.editCourse = async (req, res) => {
   try {
@@ -335,21 +318,21 @@ exports.getCourseDetails = async (req, res) => {
     //   });
     // }
 
-    // let totalDurationInSeconds = 0
-    // courseDetails.courseContent.forEach((content) => {
-    //   content.subSection.forEach((subSection) => {
-    //     const timeDurationInSeconds = parseInt(subSection.timeDuration)
-    //     totalDurationInSeconds += timeDurationInSeconds
-    //   })
-    // })
+    let totalDurationInSeconds = 0
+    courseDetails.courseContent.forEach((content) => {
+      content.subSection.forEach((subSection) => {
+        const timeDurationInSeconds = parseInt(subSection.timeDuration)
+        totalDurationInSeconds += timeDurationInSeconds
+      })
+    })
 
-    // const totalDuration = convertSecondsToDuration(totalDurationInSeconds)
+    const totalDuration = convertSecondsToDuration(totalDurationInSeconds)
 
     return res.status(200).json({
       success: true,
       data: {
         courseDetails,
-        // totalDuration,
+        totalDuration,
       },
     })
   } catch (error) {

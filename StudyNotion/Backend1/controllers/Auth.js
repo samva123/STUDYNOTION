@@ -4,7 +4,7 @@ const OTP = require("../models/OTP")
 const jwt = require("jsonwebtoken")
 const otpGenerator = require("otp-generator")
 const mailSender = require("../utils/mailSender")
-// const { passwordUpdated } = require("../mail/templates/passwordUpdate")
+const { passwordUpdated } = require("../mail/templates/passwordUpdate")
 const Profile = require("../models/Profile")
 require("dotenv").config()
 
@@ -197,44 +197,20 @@ exports.sendotp = async (req, res) => {
       })
     }
 
-    // var otp = otpGenerator.generate(6, {
-    //   upperCaseAlphabets: false,
-    //   lowerCaseAlphabets: false,
-    //   specialChars: false,
-    // })
-    // const result = await OTP.findOne({ otp: otp })
-    // console.log("Result is Generate OTP Func")
-    // console.log("OTP", otp)
-    // console.log("Result", result)
-    // while (result) {
-    //   otp = otpGenerator.generate(6, {
-    //     upperCaseAlphabets: false,
-    //   })
-    // }
-
     var otp = otpGenerator.generate(6, {
       upperCaseAlphabets: false,
       lowerCaseAlphabets: false,
       specialChars: false,
-    });
-    
-    let result = await OTP.findOne({ otp: otp });
-    
-    console.log("Result is Generate OTP Func");
-    console.log("OTP", otp);
-    console.log("Result", result);
-    
-    // Regenerate OTP if it already exists in the database
+    })
+    const result = await OTP.findOne({ otp: otp })
+    console.log("Result is Generate OTP Func")
+    console.log("OTP", otp)
+    console.log("Result", result)
     while (result) {
       otp = otpGenerator.generate(6, {
         upperCaseAlphabets: false,
-        lowerCaseAlphabets: false,
-        specialChars: false,  // Include the same constraints as in the first generation
-      });
-      result = await OTP.findOne({ otp: otp });  // Make sure to await the asynchronous call
+      })
     }
-    
-    
     const otpPayload = { email, otp }
     const otpBody = await OTP.create(otpPayload)
     console.log("OTP Body", otpBody)

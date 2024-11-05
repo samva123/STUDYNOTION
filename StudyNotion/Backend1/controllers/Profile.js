@@ -5,7 +5,7 @@ const Course = require("../models/Course")
 const User = require("../models/User")
 const { uploadImageToCloudinary } = require("../utils/imageUploader")
 const mongoose = require("mongoose")
-// const { convertSecondsToDuration } = require("../utils/secToDuration")
+const { convertSecondsToDuration } = require("../utils/secToDuration")
 // Method for updating a profile
 exports.updateProfile = async (req, res) => {
   try {
@@ -70,7 +70,7 @@ exports.deleteAccount = async (req, res) => {
     }
     // Delete Assosiated Profile with the User
     await Profile.findByIdAndDelete({
-      _id: new mongoose.Types.ObjectId(user.additionalDetails),//changes hai idhar 
+      _id: new mongoose.Types.ObjectId(user.additionalDetails),
     })
     for (const courseId of user.courses) {
       await Course.findByIdAndUpdate(
