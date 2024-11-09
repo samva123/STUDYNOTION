@@ -13,7 +13,7 @@ exports.createRating = async (req, res) => {
         //check if user is enrolled or not
         const courseDetails = await Course.findOne(
                                     {_id:courseId,
-                                    studentsEnrolled: {$elemMatch: {$eq: userId} },
+                                    studentsEnroled: {$elemMatch: {$eq: userId} },
                                 });
 
         if(!courseDetails) {
@@ -77,7 +77,7 @@ exports.getAverageRating = async (req, res) => {
             const result = await RatingAndReview.aggregate([
                 {
                     $match:{
-                        course:  mongoose.Types.ObjectId(courseId),
+                        course:  new mongoose.Types.ObjectId(courseId),
                     },
                 },
                 {
