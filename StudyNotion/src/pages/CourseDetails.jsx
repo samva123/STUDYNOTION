@@ -160,7 +160,7 @@ function CourseDetails() {
                   Created By {`${instructor.firstName} ${instructor.lastName}`}
                 </p>
               </div>
-              {/* <div className="flex flex-wrap gap-5 text-lg">
+              <div className="flex flex-wrap gap-5 text-lg">
                 <p className="flex items-center gap-2">
                   {" "}
                   <BiInfoCircle /> Created at {formatDate(createdAt)}
@@ -169,7 +169,7 @@ function CourseDetails() {
                   {" "}
                   <HiOutlineGlobeAlt /> English
                 </p>
-              </div> */}
+              </div>
             </div>
             <div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4 lg:hidden">
               <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">

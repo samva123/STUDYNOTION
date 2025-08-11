@@ -29,6 +29,7 @@ import EditCourse from "./components/core/Dashboard/EditCourse"
 import CourseDetails from "./pages/CourseDetails"
 import VideoDetails from "./components/core/VewCourse/VideoDetails"
 import ViewCourse from "./pages/ViewCourse"
+import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
 
 
 function App() {
@@ -138,6 +139,7 @@ function App() {
               {/* <Route path="dashboard/instructor" element={<Instructor />} /> */}
               <Route path="dashboard/my-courses" element={<MyCourses />} />
               <Route path="dashboard/add-course" element={<AddCourse />} />
+              <Route path="dashboard/instructor" element={<Instructor />} />
               <Route
                 path="dashboard/edit-course/:courseId"
                 element={<EditCourse />}
