@@ -22,6 +22,10 @@ Authentication: JSON Web Token (JWT) 🔐
 State Management: Redux 🎛️
 🚀 Ready to explore? Dive into StudyNotion now! 🎉
 
+**Live Website:** 👇
+[![Live Demo](https://img.shields.io/badge/-Live%20Demo-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://studynotion-teal-five.vercel.app/)
+
+
 Below is a link to video of StudyNotion
 
 https://github.com/user-attachments/assets/cd771d12-4ddb-487b-bd05-417c9f89548d
