@@ -23,7 +23,7 @@ State Management: Redux 🎛️
 🚀 Ready to explore? Dive into StudyNotion now! 🎉
 
 **Live Website:** 👉 
-[![Click Me!](https://img.shields.io/badge/-Live%20Demo-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://studynotion-teal-five.vercel.app/)
+[![Click Me!](https://img.shields.io/badge/-Live%20Demo-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://studynotion-omega-taupe.vercel.app/)
 
 
 Below is a link to video of StudyNotion
