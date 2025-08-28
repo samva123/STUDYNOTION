@@ -10,7 +10,7 @@ require("dotenv").config()
 
 // Signup Controller for Registering USers
 
-exports.signup = async (req, res) => {
+exports.signup = async (req, res) => {  
   try {
     // Destructure fields from the request body
     const {
@@ -113,7 +113,7 @@ exports.signup = async (req, res) => {
 }
 
 // Login controller for authenticating users
-exports.login = async (req, res) => {
+exports.login = async (req, res) => { 
   try {
     // Get email and password from request body
     const { email, password } = req.body

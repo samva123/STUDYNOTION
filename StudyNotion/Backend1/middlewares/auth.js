@@ -25,6 +25,15 @@ exports.auth = async (req, res, next) => {
 			console.log(decode);
 			// Storing the decoded JWT payload in the request object for further use
 			req.user = decode;
+			// By attaching req.user, you’re making the decoded token payload 
+			// available to the rest of your middleware/route.
+
+ 			// Without req.user, every route would have to decode
+			//  the token again.
+
+			// With req.user, you decode once in the auth middleware and 
+			// then reuse the user info everywhere in the request lifecycle.
+
 		} catch (error) {
 			// If JWT verification fails, return 401 Unauthorized response
 			return res
